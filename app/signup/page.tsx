@@ -89,15 +89,24 @@ export default function SignupPage() {
 
       if (authData.user) {
         try {
-          await supabase.from("users").insert({
+          const { error: insertError } = await supabase.from("users").insert({
             id: authData.user.id,
-            email: formData.email,
+            email: formData.email.toLowerCase(),
             name: formData.name,
             trusted: false,
           })
+
+          if (insertError) {
+            console.error("[v0] Error creating user profile:", insertError)
+            // Check if it's a duplicate key error
+            if (!insertError.message?.includes("duplicate")) {
+              setError("Failed to create user profile. Please contact support.")
+              setLoading(false)
+              return
+            }
+          }
         } catch (profileErr) {
           console.error("[v0] Error creating profile:", profileErr)
-          // Don't fail signup if profile creation fails
         }
 
         setOtpSent(true)
