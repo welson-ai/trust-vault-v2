@@ -85,6 +85,23 @@ export async function saveContract(contract: Omit<Contract, "id" | "created_at">
       return null
     }
 
+    const { data: existingUser } = await supabase.from("users").select("id").eq("id", user.id).single()
+
+    if (!existingUser) {
+      console.log("[v0] User not found in users table, creating entry")
+      const { error: userError } = await supabase.from("users").insert({
+        id: user.id,
+        email: user.email || "",
+        name: user.user_metadata?.full_name || user.email?.split("@")[0] || "User",
+        trusted: false,
+      })
+
+      if (userError) {
+        console.error("[v0] Error creating user entry:", userError)
+        return null
+      }
+    }
+
     const { data, error } = await supabase
       .from("contracts")
       .insert([
