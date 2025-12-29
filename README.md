@@ -158,7 +158,7 @@ trust-vault/
 ### **Clone the Repository**
 
 ```
-git clone https://github.com/your-org/trust-vault.git
+git clone(https://github.com/welson-ai/trust-vault-v2)
 cd trust-vault
 ```
 
