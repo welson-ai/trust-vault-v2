@@ -1,5 +1,8 @@
 # **Trust Vault**
 
+# **deployements**
+video link **https://www.veed.io/view/d702fe7d-0026-4b1f-8b0c-c6121841e8f1?source=Dashboard&panel=share**
+
 ## **Overview**
 
 Trust Vault is a **decentralized escrow and programmable payment protocol** built on **Solana**, designed to bridge **on-chain trust guarantees** with **off-chain, real‑world payments**. It enables users to lock funds securely, define programmable release conditions, and settle payments using both **crypto-native flows** and **traditional payment rails** such as **Visa TAP**.
